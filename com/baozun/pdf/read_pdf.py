@@ -1,5 +1,6 @@
 import PyPDF2
 import re
+import os
 
 def read_pdf_with_pypdf2(pdf_path):
     """
@@ -52,13 +53,7 @@ def add_space_after_second_slash_simple(text):
         return processed_text
     return text
 
-def writeLog(logPath, logTxt):
-    with open(logPath, 'a', encoding='utf-8') as f:
-        f.write(logTxt + '\n')
-
-
-if __name__ == "__main__":
-    # test()
+def read_pdf():
     pdf_path = r'D:\u2026\所有生词本_20260222_1903.pdf'
     write_path = r'D:\u2026\所有生词本_202603_new.txt'
     content = read_pdf_with_pypdf2(pdf_path)
@@ -69,3 +64,21 @@ if __name__ == "__main__":
                 index += 1
                 value = str(index) + '. ' + item
                 f.write(value + '\n')
+
+def split_txt():
+    txt_path = r'D:\u2026\所有生词本_202603_new.txt'
+    with open(txt_path, 'r', encoding='utf-8') as f:
+        context = f.readlines()
+        index = 0
+        while len(context) > 0:
+            index += 1
+            read_context = context[:300]
+            context = context[300:]
+            write_path = os.path.join('D:\\u2026', '生词本_'+ str(index) + '.txt')
+            with open(write_path, 'w', encoding='utf-8') as ff:
+                for item in read_context:
+                    ff.write(item)
+
+if __name__ == "__main__":
+    split_txt()
+
