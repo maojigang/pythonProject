@@ -17,5 +17,25 @@ def test_regex():
     print(result)
     print('\n'.join([' '.join(['%s*%s=%-2s' % (y, x, x * y) for y in range(1, x + 1)]) for x in range(1, 10)]))
 
+def test_su():
+    result = re.sub('星期一', '星期二', '今天星期一, 星期一是个工作的第一天', count=1)
+    print(result)
+    ab = 5 / 3
+    newValue = f"{ab:.2f}"
+    print(newValue)
+    print("{:.2f}".format(ab))
+    print(f"{ab:.2f}")
+
+    tup = (1, 3)
+    a, b = tup
+    print(f"{a}={b}")
+
+    l1 = [2, 3, 4, 5]
+    c, d = l1[:2]
+    print(f"{c}={d}")
+
+    s1 = '''aaabcddfdsdd'''
+    print(s1 + "中国")
+
 if __name__ == '__main__':
     test_regex()
